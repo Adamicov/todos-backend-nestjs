@@ -1,0 +1,26 @@
+
+
+###
+POST http://localhost:3000/todos
+Content-Type: application/json
+
+{
+  "title": "Nowe Todo",
+  "content": "Todo nowe"
+}
+###
+
+
+###
+http://localhost:3000/todos
+
+
+###
+http://localhost:3000/todos/1
+
+
+###
+http://localhost:3000/todos/forbidden
+
+
+

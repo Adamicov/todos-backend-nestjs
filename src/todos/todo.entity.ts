@@ -1,5 +1,14 @@
-import { BeforeUpdate, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm/index';
+import {
+  BeforeUpdate,
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm/index';
 import { Category } from './category.entity';
+import { User } from '../user/user.entity';
 
 export enum TaskStatus {
   DONE = 'Done',
@@ -36,10 +45,17 @@ export class Todo {
     this.updatedDate = new Date();
   }
 
-  @Column('simple-array')
+  @Column('simple-array', { nullable: true })
   faIcons: string[];
 
-  @OneToOne(type => Category)
+  @ManyToOne(
+    type => Category,
+    category => category.todos,
+  )
   @JoinColumn()
   category: Category;
+
+  @ManyToOne(type => User)
+  @JoinColumn()
+  user: User;
 }

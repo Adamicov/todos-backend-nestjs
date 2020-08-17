@@ -1,8 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm/index';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm/index';
+import { User } from '../user/user.entity';
 
 @Entity()
 export class Category {
-
   @PrimaryGeneratedColumn()
   id: string;
 
@@ -11,4 +16,11 @@ export class Category {
 
   @Column()
   color: string;
+
+  @ManyToOne(
+    type => User,
+    user => user.categories,
+  )
+  user: User;
+
 }

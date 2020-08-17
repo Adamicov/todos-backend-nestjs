@@ -5,9 +5,10 @@ import { LoggerMiddleware } from './logger.middleware';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Todo } from './todo.entity';
 import { Category } from './category.entity';
+import { User } from '../user/user.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Todo, Category])],
+  imports: [TypeOrmModule.forFeature([Todo, Category, User])],
   controllers: [TodosController],
   providers: [TodosService, LoggerMiddleware],
 })

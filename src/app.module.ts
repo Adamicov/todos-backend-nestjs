@@ -4,6 +4,9 @@ import { AppService } from './app.service';
 import { TodosModule } from './todos/todos.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Todo } from './todos/todo.entity';
+import { Category } from './todos/category.entity';
+import { UserModule } from './user/user.module';
+import { User } from './user/user.entity';
 
 @Module({
   imports: [
@@ -15,9 +18,10 @@ import { Todo } from './todos/todo.entity';
       username: 'postgres',
       password: '',
       database: 'testdb',
-      entities: [Todo],
+      entities: [Todo, Category, User],
       synchronize: true,
     }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

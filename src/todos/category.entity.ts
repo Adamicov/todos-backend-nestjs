@@ -8,6 +8,11 @@ import { User } from '../user/user.entity';
 
 @Entity()
 export class Category {
+  constructor(name, color) {
+    this.name = name;
+    this.color = color;
+  }
+
   @PrimaryGeneratedColumn()
   id: string;
 
@@ -22,5 +27,4 @@ export class Category {
     user => user.categories,
   )
   user: User;
-
 }

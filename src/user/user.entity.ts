@@ -1,14 +1,10 @@
-import {
-  Column,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm/index';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm/index';
 import { Category } from '../todos/category.entity';
 import { Todo } from '../todos/todo.entity';
 
 @Entity()
 export class User {
+
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -29,4 +25,6 @@ export class User {
     todo => todo.user,
   )
   todos: Todo[];
+
+
 }

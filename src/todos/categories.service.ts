@@ -13,9 +13,7 @@ export class CategoriesService {
   ) {}
 
   async createCategory(dto: CreateCategoryDto): Promise<void> {
-    const category = new Category();
-    category.name = dto.name;
-    category.color = dto.color;
+    const category = new Category(dto.name, dto.color);
     await this.categoryRepository.save(category);
   }
 

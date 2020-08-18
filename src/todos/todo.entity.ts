@@ -4,7 +4,6 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm/index';
 import { Category } from './category.entity';
@@ -48,14 +47,13 @@ export class Todo {
   @Column('simple-array', { nullable: true })
   faIcons: string[];
 
-  @ManyToOne(
-    type => Category,
-    category => category.todos,
-  )
+  @ManyToOne(type => Category, { eager: true })
   @JoinColumn()
   category: Category;
 
-  @ManyToOne(type => User)
-  @JoinColumn()
+  @ManyToOne(
+    type => User,
+    user => user.todos,
+  )
   user: User;
 }

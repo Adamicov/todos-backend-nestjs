@@ -23,20 +23,22 @@ export class UserService {
     const categoryRepository = connection.getRepository(Category);
     await categoryRepository.save(categories);
     user.categories = categories;
-    await this.userRepository.save(user)
+    await this.userRepository.save(user);
   }
 
   getAll(): Promise<User[]> {
-    return this.userRepository.find({ relations: ["categories", "todos"]});
+    return this.userRepository.find({ relations: ['categories', 'todos'] });
   }
 
   findOne(id: number): Promise<User> {
     return this.userRepository.findOne(id);
   }
 
+  findUserByName(name: string): Promise<User> {
+    return this.userRepository.findOne({ name });
+  }
+
   async remove(id: number): Promise<void> {
     await this.userRepository.delete(id);
   }
-
-
 }
